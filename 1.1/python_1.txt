@@ -1,0 +1,43 @@
+create virtual environment:
+
+(Only works on command prompt)
+pip install virtualenvwrapper-win 
+
+then:
+
+mkvirtualenv env-name
+
+To manipulate environment:
+
+    To deactivate an environment: deactivate
+    To display installed environments: workon
+    To load an installed environment: workon <environment name>
+    To remove an installed environment: rmvirtualenv <environment name>
+
+activate environment
+MY path: C:\Users\juanp\Envs
+
+powershell:
+cd C:\<path to your VirtualEnvs folder>\<environment name>\Scripts\
+then:
+.\Activate.ps1
+
+
+command prompt:
+
+cd C:\<path to your VirtualEnvs folder>\<environment name>\Scripts\
+.\activate.bat
+
+Packages:
+
+bcrypt
+ipython
+
+TO GENERATE A packages.json EQUIVALENT
+
+pip freeze > requirements.txt
+
+to install into another
+1st copy paste into scripts then run:
+
+pip install -r requirements.txt
