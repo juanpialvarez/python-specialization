@@ -1,0 +1,113 @@
+INLINE ELIF:
+
+# x = 10
+# y = 20
+
+# max_value = x if x > y else y
+# print(max_value)
+
+range(start, end, step)
+
+e.g.
+for i in range(5, 11, 1):
+    print(i)
+
+While loops:
+
+number = 5
+
+while number < 11:
+    print(number)
+    number += 1 
+
+BREAK: Breaks out of loop
+
+for div in range(start, end):
+    if div == 0:
+        print("Division by zero, exiting.")
+        break
+    print(num / div)
+
+INLINE LOOP:
+
+squares = [num ** 2 for num in range(1,11)]
+result_list = [<expression involving element> for element in sequence if <condition>]
+
+INLINE LOOP WITH CONDITIONAL:
+
+evens = [num for num in range(1, 11) if num % 2 == 0]
+
+ALSO:
+
+result_list = [<expression_1> if condition_1 else <expression_2> if condition_2 else <expression_3> for element in sequence]
+text = input("Enter a string: ")
+chars = ['Uppercase' if c.isupper() else 'Lowercase' if c.islower() else 'Other' for c in text]
+
+ENUMERATE
+
+So you have a loop 
+
+for planet in planets:
+    print(planet)
+
+Now you need not only the element but also to track its index.
+you could:
+
+count = 0
+
+for planet in planets:
+    print(p + count)
+    count += 1
+
+But python provides enumerate() function which allows you to
+get both the index and the element.
+
+for <position>, <value> in enumerate(seq):
+
+you can also create lists of tuples with enumerate()
+fruits = ['Apples', 'Oranges', 'Bananas']
+new_list = list(enumerate(fruits))
+print(new_list)
+
+functions with default value:
+
+def price_tag(product_name="No name specified.", price=0):
+    print("Product: " + product_name)
+    print("Price:   " + str(price))
+
+YOU CAN PASS INDEFINITE NUMBER OF ARGUMENTS WITH:
+
+def display_items(*items):
+    for i in items:
+        print(str(i) + " ", end="")
+
+display_items("Samsung", "Apple", "Nokia")
+
+IF YOU HAVE A GLOBAL VARIABLE THAT YOU WISH TO USE INSIDE A FUNCTION:
+
+E.G.
+
+text = "I like apples"
+
+def my_func():
+    # We'll try joining another string to 'text'
+    text = text + "... but I love oranges better!"
+    print("text from the inside: " + text)
+
+my_func()
+print("text from the outside: " + text)
+
+SINCE TEXT IS NOT DEFINED IN THE FUNCTION IT WILL THROW AN ERROR SO:
+
+USE THE global KEYWORD
+
+text = "I like apples"
+
+def my_func():
+    global text
+    # We'll try joining another string to 'text'
+    text = text + "... but I love oranges better!"
+    print("text from the inside: " + text)
+
+my_func()
+print("text from the outside: " + text)
