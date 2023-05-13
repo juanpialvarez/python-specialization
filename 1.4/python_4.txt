@@ -1,0 +1,161 @@
+Opening files:
+
+<name of file object> = open('<path to file>', '<mode of access>')
+
+Modes of access:
+
+r = read
+w = write
+a = append
+r+ = update (both r and w)
+t = r or w text data (default)
+b = r or w binary data
+
+e.g. 
+
+my_file = open('desserts.txt', 'r')
+
+Methods:
+
+1: .read(n) : reads up to the nth character
+
+e.g.
+my_file.read(10) 
+Donuts\n
+App
+
+2: .tell() : tells you up to which character it is reading
+
+YOU CAN THEN GET THE REST OF THE FILE BY ADDING MORE READ METHODS:
+
+file.read(10) <-reads first 10
+file.read(10) <-reads second 10
+file.read() <-reads rest of file
+
+3: You can reset the position from which it reads from with: .seek()
+
+my_file.seek(0) <- resets it to the beginning 
+
+4: .readline()
+file.readline()<-reads first line
+file.readline()<-reads second line
+
+you can use seek() to return as well
+
+5: .readlines() reads lines up to a line (if nothing specified then all)
+
+6: string.rstrip() strips on the left
+
+e.g.
+
+all_desserts_clean = []
+for dessert in all_desserts:
+    all_desserts_clean.append(dessert.rstrip('\n'))
+print(all_desserts_clean)
+['Donuts', 'Apple Pie', 'Banana Split', 'Ice Cream', 'Cake',
+ 'Brownies', 'Tiramisu', 'Chocolate Mousse']
+
+7: file.close <- important to close
+
+WRITE:
+
+writeline()
+
+vegetables = ['Tomato\n', 'Carrot\n', 'Cucumber\n']
+my_file = open('veggies.txt', 'w')
+my_file.writelines(vegetables)
+my_file.close()
+
+YOU CAN ALSO:
+
+with open('veggies.txt', 'w') as my_file:
+    my_file.writelines(vegetables)
+
+WHICH AUTOMATICALLY CLOSES THE FILE ONCE YOU'RE DONE WITH THE OPERATIONS.
+
+PICKLES:
+If you have complex data (like a dictionary)
+they convert complex data into a packaged stream of bytes, 
+known as a “pickle,” then write this into a binary file.
+
+import pickle
+
+vehicle = {
+    'brand': 'BMW',
+    'model': '530i',
+    'year' : 2015,
+    'color': 'Black Sapphire'
+}
+
+then:
+
+my_file = open('vehicledetail.bin', 'wb')  <-remember to store in binary (.bin)
+
+then:
+
+pickle.dump(vehicle, my_file)
+
+my_file.close()
+
+When you want to use the object again:
+
+pickle.load()
+
+e.g.
+
+with open('vehicledetail.bin', 'rb') as my_file:
+    vehicle = pickle.load(my_file)
+
+IF YOU HAVE TO NAVIGATE DATA THROUGH YOUR SYSTEM
+USE os MODULE
+
+import os  
+os.getcwd() <- returns string with wd
+(tree can give you a tree like representation of your folder) 
+
+To navigat into a directory use:
+
+os.chdir()
+os.chdir(“<path to desired folder>”)
+
+To list objects in the directory:
+
+os.listdir() <-returns list with their names
+
+To make new directory:
+
+os.mkdir()
+
+try:
+    code
+except:   
+    notify the user of the error, or
+    probably fix the error
+else:
+    code that runs only if there are no errors
+finally:
+    code that runs whether or not the 
+    error happens
+
+FINALLY BLOCKS RUN EVEN AFTER THE RETURN STATEMENT IS EXECUTED
+
+Errors:
+
+TypeError
+IndexError
+NameError
+FileNotFoundError
+ZeroDivisionError
+
+e.g.
+
+try:
+    a = int(input("Enter a number to be divided: "))
+    b = int(input("Enter another number to divide it by: "))
+    print(a/b)
+except ValueError:
+    print("One or more of your inputs aren't numbers.")
+except ZeroDivisionError:
+    print("Can't divide by zero!")
+except:
+    print("Oops, we've stumbled on some unexpected error.")
