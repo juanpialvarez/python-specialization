@@ -1,0 +1,85 @@
+Getters and setters:
+
+class Fruit 
+    def __init__ (self, name: str):
+        self._name = name
+    def ge-name(self):
+        print('Getting name.')
+    def set_name(self, new_name: str):
+        self._name = new_name
+
+class Fruit 
+    def __init__ (self, name: str):
+        self._name = name
+    @property
+    def fruit_name(self):
+        print(f'"{self._name}" was accessed')
+        return self._name
+    @fruit_name.setter  <----------syntax is strict.
+    def fruit_name(self, value):
+        print(f'{self.name} is now "{value}"')
+        self._name = value
+    @fruit_name.deleter
+    def fruit_name(self):
+        print(f'"{self._name}" was deleted')
+        del self._name
+
+Classes with common variables:
+
+class Example(object):
+    common_string = 'Example'
+
+__str__ <--- String printed if you print that object
+
+
+
+INHERITANCE:
+
+
+class Animal(object):
+    def __init__(self, age, name):
+        self.age = age
+        self.name = name
+
+    def get_age(self):
+        return self.age
+
+    def get_name(self):
+        return self.name
+
+    def set_age(self, age):
+        self.age = age
+
+    def set_name(self, name):
+        self.name = name
+
+    def __str__(self):
+        output = "\nClass: Animal\nName: " + str(self.name) + \
+            "\nAge: " + str(self.age)
+        return output
+
+class Cat(Animal):
+    def __init__(self, age, name, claws):
+        super().__init__(age, name)
+        Animal.__init__(self, first, last, pay) <---- Can also do this
+        self.claws = claws
+
+
+OPERATIONS OVERLOADING:
+
+__add__() sum   
+__sub__() substract
+__str__() string
+__repr__() you can also use this
+__lt__() less than
+__gt__() greater than
+__le__() less than or equal
+__ge__() greater than or equal
+__eq__() equal
+__ne__() not equal
+
+CHECK IF IT'S SUBCLASS OR INSTANCE
+isinstance(intance, class)
+issubclass(subclass, class)
+
+
