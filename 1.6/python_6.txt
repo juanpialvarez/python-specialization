@@ -1,0 +1,169 @@
+Run the command:
+mysql -u user -p
+then enter password
+
+Run the command:
+mysql -u user -p databasename
+
+
+Create a MySQL user: 
+
+mysql> CREATE USER 'cf-python'@'localhost' IDENTIFIED BY 'password';
+
+Gran access in data data bases:
+
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'cf-python'@'localhost';
+
+You can also create alter or drop provileges:
+
+mysql> GRANT CREATE, ALTER, DROP PRIVILEGES ON (* for all)database.table(* for all) TO 'cf-python'@'localhost';
+
+You can also select, inset, update, delete provileges:
+
+mysql> GRANT SELECT, INSERT, UPDATE, DELETE PRIVILEGES ON (* for all)database.table(* for all) TO 'cf-python'@'localhost';
+
+REVOKE
+
+Install MySQL connector:
+
+pip install mysql-connector-python
+
+import mysql.connector
+
+Then initialize a connection with mysql.connector.connect() method:
+
+database_object = mysql.connector.connect(
+    host=”hostname”, 
+    user=”user name”, 
+    passwd=”password”
+    )
+
+Cursor object lets you perform operations using SQL queries.
+
+cursor = conn.cursor()
+
+To create database with cursor:
+
+cursor.execute("CREATE DATABASE my_database")
+
+To use databese:
+
+cursor.execute("USE my_database")
+
+TO CREATE TABLES:
+
+CREATE TABLE <table name> (
+    <column 1 name> <data type for column 1>,
+    <column 2 name> <data type for column 2>,
+    <column 3 name> <data type for column 3>,
+    ...
+    <column N name> <data type for column N>
+)
+
+Some data types:
+    VARCHAR(n): String of variable length, with n representing
+    the maximum number of characters
+    INT: Standard integers
+    FLOAT: Floating-point decimal numbers
+    DATETIME: Datetime values
+
+e.g.
+
+CREATE TABLE inventory (
+    item_id INT,
+    item_name VARCHAR(50),
+    price FLOAT,
+    qty INT
+)
+
+IN PYTHON:
+
+cursor.execute('''CREATE TABLE inventory(
+    item_id             INT,
+    item_name           VARCHAR(50),
+    price               FLOAT,
+    qty                 INT
+)''')
+
+
+Rename Table:
+ALTER TABLE <table name> RENAME TO <new table name>
+
+Rename Column:
+ALTER TABLE <table name>
+RENAME COLUMN <existing column name> TO <new column name>;
+
+Adding Column:
+ALTER TABLE <table name> ADD COLUMN <definition of your new column>
+
+Viewing All Columns:
+DESCRIBE <table name>
+
+in python:
+
+first:
+cursor.execute("DESCRIBE Stock")
+
+then:
+result = cursor.fetchall()
+for row in result:
+    print(row)
+
+Droping Column:
+ALTER TABLE <table name> DROP COLUMN <column name>;
+
+Draping Tables:
+cursor.execute("DROP TABLE addresses")
+
+Adding Entries to Table:
+INSERT INTO <table name> (<columns to enter data into>) 
+VALUES (<corresponding values for each column>)
+
+One way to execute cursor commands:
+
+sql = 'INSERT INTO stock (item_id, item_name, price, quantity, manufacturer_name) VALUES (%s, %s, %s, %s, %s)'
+val = (2, 'Coca-Cola', 2.5, 30, 'The Coca-Cola Company')
+cursor.execute(sql, val)
+
+Auto Increment ID Column:
+
+AUTO_INCREMENT
+
+CREATE TABLE movie (
+    id      INT PRIMARY KEY,
+    name        VARCHAR(20),
+    year        INT,
+    imdb_rating INT,
+    language    VARCHAR(20)
+);
+
+ALTER TABLE movie MODIFY COLUMN id INT AUTO_INCREMENT; (Also how to change data type)
+
+Displaying:
+SELECT <columns to display> FROM <table name>
+
+results = cursor.fetchall()
+
+for row in results:
+    print("ID: ", row[0])
+    print("Name: ", row[1])
+    print("Manufacturer: ", row[2])
+    print("Price: ", row[3])
+    print("Quantities Available:", row[4])
+    print()
+
+
+UPDATE <table name> SET <column name> = <new value> WHERE <condition describing the row>
+
+To Delete:
+
+
+DELETE FROM table_name WHERE condition; 
+
+If you want to commit the changes so they're safe:
+conn.commit()
+
+IMPORTANT!!E
+After you're done:
+conn.close()
+ 
