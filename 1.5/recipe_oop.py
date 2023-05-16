@@ -15,14 +15,13 @@ def main():
 
         def __calculate_difficulty(self):
             if self.cooking_time < 10 and len(self.ingredients) < 4:
-                difficulty = "Easy"
+                self._difficulty = "Easy"
             elif self.cooking_time < 10 and len(self.ingredients) >= 4:
-                difficulty = "Medium"
+                self._difficulty = "Medium"
             elif self.cooking_time >= 10 and len(self.ingredients) < 4:
-                difficulty = "Intermediate"
+                self._difficulty = "Intermediate"
             elif self.cooking_time >= 10 and len(self.ingredients) >= 4:
-                difficulty = "Hard"
-            self._difficulty = difficulty
+                self._difficulty = "Hard"
 
         def search_ingredient(self, ingredient):
             return ingredient in self._ingredients
