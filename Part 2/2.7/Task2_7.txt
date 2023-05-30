@@ -1,0 +1,7 @@
+1. I want the user to see a table of recipes based on an ingredient.
+
+Data Analysis
+2. I want the user to be able to pick from three tables:
+    - Cooking time by recipes: bar chart x = recipe name y = cooking time
+    - Total recipes with that ingredient out of all recipes: pie chart out of all recipes
+    - Number of ingredients per recipe: bar chart x = recipe name y = number of ingredients
